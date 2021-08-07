@@ -38,47 +38,47 @@ test('Missions Dropdown Menu Test Case', async () => {
     driver.manage().window().maximize();
     await driver.findElement(missions).click();
     await driver.findElement(artemis).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(artemisnasabutton).click();
     await driver.findElement(missions).click();
     await driver.findElement(commercial).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(mars).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(hubble).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(james).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(juno).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(spaceStation).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(insight).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(perseverance).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(pluto).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(osiris).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(parker).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(launches).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(missions).click();
     await driver.findElement(allmissions).click();
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     await driver.findElement(allmissionsnasabutton).click();
     expect(await page.getResults());
 
