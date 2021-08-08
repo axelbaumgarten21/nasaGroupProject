@@ -1,42 +1,44 @@
-import {
-  Builder,
-  By,
-  Capabilities,
-  until,
-  WebDriver,
-  WebElement,
-} from "selenium-webdriver";
-import { elementLocated } from "selenium-webdriver/lib/until";
-const chromedriver = require("chromedriver");
+import { By, until, WebDriver } from "selenium-webdriver";
+
     export class nasaSpecs {
+      static getSuccess(): any {
+        throw new Error("Method not implemented.");
+      }
         driver: WebDriver;
         url: string = "https://www.nasa.gov/";
 
 
-home: By = By.xpath("//*[@id='navbar-nasa']");
-// missions: By = By.xpath("//*[@id='nasa-main-menu']/li[2]/a/span[1]");
-// artemis: By = By.xpath("//*[@id='nasa-main-menu']/li[2]/ul/li[1]/a");
-//I don't think we need these since I listed them as a const - might just use this class area for the subsribe to nasa test. AB
-homepage: string = "https://www.nasa.gov/"
-        
+homepage: By = By.xpath("//*[@class='html front not-logged-in page-indexhtml show-topics-menu ember-application']");
+successP: By = By.xpath('//*[@id="content"]/div'); //("static-landing-page");
 
-constructor(driver?: WebDriver) {
-  if (driver) this.driver = driver;
-  else
-    this.driver = new Builder()
-      .withCapabilities(Capabilities.chrome())
-      .build();
+
+      
+
+constructor(driver: WebDriver) {
+  this.driver = driver;
 }
 async navigate() {
   await this.driver.get(this.url);
-  await this.driver.wait(until.elementLocated(this.home));
+  await this.driver.wait(until.elementLocated(this.homepage));
   await this.driver.wait(
-    until.elementIsVisible(await this.driver.findElement(this.home))
+    until.elementIsVisible(await this.driver.findElement(this.homepage))
   );
 }
+async getText(elementBy: By) {
+    await this.driver.wait(until.elementLocated(elementBy));
+    return (await this.driver.findElement(elementBy)).getText();
+  }
 
-async sendKeys(elementBy: By, keys) {
-  await this.driver.wait(until.elementLocated(elementBy));
-  return this.driver.findElement(elementBy).sendKeys(keys);
+  async sendKeys(elementBy: By, keys) {
+    await this.driver.wait(until.elementsLocated(elementBy));
+    return this.driver.findElement(elementBy).sendKeys(keys);
 }
+  async getResults() {
+    return this.getText(this.homepage);
+  }
+
+  async getSuccess() {
+    return this.getText(this.successP);
+  }
+  
 }
