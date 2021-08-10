@@ -1,42 +1,46 @@
-import {
-  Builder,
-  By,
-  Capabilities,
-  until,
-  WebDriver,
-  WebElement,
-} from "selenium-webdriver";
-import { elementLocated } from "selenium-webdriver/lib/until";
-const chromedriver = require("chromedriver");
+import { By, until, WebDriver } from "selenium-webdriver";
+
+
     export class nasaSpecs {
         driver: WebDriver;
         url: string = "https://www.nasa.gov/";
 
+//TB-added searchbar and searchresults locator
+homepage: By = By.xpath("//*[@class='html front not-logged-in page-indexhtml show-topics-menu ember-application']");
+searchBar: By = By.xpath('//*[@name="query"]');
+searchresults: By = By.xpath("//*[@id='best-bet-1']")
 
-home: By = By.xpath("//*[@id='navbar-nasa']");
-// missions: By = By.xpath("//*[@id='nasa-main-menu']/li[2]/a/span[1]");
-// artemis: By = By.xpath("//*[@id='nasa-main-menu']/li[2]/ul/li[1]/a");
-//I don't think we need these since I listed them as a const - might just use this class area for the subsribe to nasa test. AB
-homepage: string = "https://www.nasa.gov/"
-        
-
-constructor(driver?: WebDriver) {
-  if (driver) this.driver = driver;
-  else
-    this.driver = new Builder()
-      .withCapabilities(Capabilities.chrome())
-      .build();
+constructor(driver: WebDriver) {
+  this.driver = driver;
 }
 async navigate() {
   await this.driver.get(this.url);
-  await this.driver.wait(until.elementLocated(this.home));
+  await this.driver.wait(until.elementLocated(this.homepage));
   await this.driver.wait(
-    until.elementIsVisible(await this.driver.findElement(this.home))
+    until.elementIsVisible(await this.driver.findElement(this.homepage))
   );
+}
+//TB-added getText function
+async getText(elementBy: By) {
+  await this.driver.wait(until.elementLocated(elementBy));
+  return (await this.driver.findElement(elementBy)).getText();
 }
 
 async sendKeys(elementBy: By, keys) {
   await this.driver.wait(until.elementLocated(elementBy));
   return this.driver.findElement(elementBy).sendKeys(keys);
 }
+//TB-added getsearchresults function
+async getsearchresults() {
+  return this.getText(this.searchresults)
 }
+
+//TB-adding a doSearch function
+async doSearch (searchTerm) {
+  let search = await this.driver.findElement(this.searchBar)
+  await this.sendKeys(this.searchBar, `${searchTerm}\n`)
+  let myText = await this.driver.findElement(this.searchresults).getText();
+  await this.getsearchresults();
+  expect(myText).toContain(`${searchTerm}`);
+  }
+  }
