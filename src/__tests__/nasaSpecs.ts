@@ -10,6 +10,7 @@ homepage: By = By.xpath("//*[@class='html front not-logged-in page-indexhtml sho
 searchBar: By = By.xpath('//*[@name="query"]');
 searchresults: By = By.xpath("//*[@id='best-bet-1']")
 
+
 constructor(driver: WebDriver) {
   this.driver = driver;
 }
@@ -20,16 +21,17 @@ async navigate() {
     until.elementIsVisible(await this.driver.findElement(this.homepage))
   );
 }
-//TB-added getText function
 async getText(elementBy: By) {
   await this.driver.wait(until.elementLocated(elementBy));
   return (await this.driver.findElement(elementBy)).getText();
 }
-
 async sendKeys(elementBy: By, keys) {
   await this.driver.wait(until.elementLocated(elementBy));
   return this.driver.findElement(elementBy).sendKeys(keys);
 }
+        async getResults() {
+    return this.getText(this.homepage);
+  }
 //TB-added getsearchresults function
 async getsearchresults() {
   return this.getText(this.searchresults)
@@ -43,4 +45,4 @@ async doSearch (searchTerm) {
   await this.getsearchresults();
   expect(myText).toContain(`${searchTerm}`);
   }
-  }
+}
