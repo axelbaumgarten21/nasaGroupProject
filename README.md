@@ -12,7 +12,8 @@ This project showcases our collaborative automation efforts to test
 someSite.
 
 Web to test is nasa.gov
-The main purpose of the websire is to provide information about NASA missions, crue, space stations. 
+
+The main purpose of the website is to provide information about NASA missions, crew, space stations. 
 
 Authors:
 
