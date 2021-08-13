@@ -1,5 +1,5 @@
 import { By, until, WebDriver } from "selenium-webdriver";
-// const foto = require('foto');
+
 
 export class nasaSpecs {
   static getSuccess(): any {
@@ -33,6 +33,8 @@ async getText(elementBy: By) {
 async sendKeys(elementBy: By, keys) {
   await this.driver.wait(until.elementLocated(elementBy));
   return this.driver.findElement(elementBy).sendKeys(keys);
+
+//getResults is to verify the locator "homepage"(only available on the homepage) is active and found AB
 }
         async getResults() {
     return this.getText(this.homepage);
@@ -57,15 +59,4 @@ async doSearch (searchTerm) {
   await this.getsearchresults();
   expect(myText).toContain(`${searchTerm}`);
   }
-      // async takeScreenshot(filepath: string) {
-    //   foto.writeFile(
-    //     `${filepath}.png`,
-    //     await this.driver.takeScreenshot(),
-    //     "base64",
-    //     (e) => {
-    //       if (e) console.log(e);
-    //       else console.log("screenshot saved successfully");
-    //     }
-    //   );
-    // }
 }

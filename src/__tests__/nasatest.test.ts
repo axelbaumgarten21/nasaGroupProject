@@ -1,9 +1,12 @@
+//We all used the same nasaSpecs page for our various seperate tests AB
 import { nasaSpecs } from "./nasaSpecs"
 
-import { Builder, Capabilities, By, ThenableWebDriver, Actions, WebElement, WebDriver, Locator, Condition } from "selenium-webdriver"
+import { Builder, Capabilities, By, } from "selenium-webdriver"
 
 const chromedriver = require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
+
+//page is used to activate functions in the nasaSpecs page AB
 const page = new nasaSpecs(driver);
 
 const missions: By = By.xpath("//span[text()='Missions']");
@@ -23,7 +26,7 @@ const parker: By = By.xpath("//a[text()='Parker Solar Probe']");
 const launches: By = By.xpath("//a[text()='Launches and Landings']");
 const allmissions: By = By.xpath("//a[text()='All Missions A-Z']");
 const allmissionsnasabutton: By = By.xpath("//img[@src='/sites/all/themes/custom/nasatwo/images/nasa-logo.svg']");//the locator for the nasa logo differs in this mission page for some reason. AB
-const nasalogobutton: By = By.xpath("//*[@alt='NASA logo']")
+const nasalogobutton: By = By.xpath("//*[@alt='NASA logo']")// I made this locator here in case we needed it AB
 
 
 
@@ -38,9 +41,9 @@ afterAll(async () => {
 })
 jest.setTimeout(300000)
 
-// Jira test plan located here- https://dmutah.atlassian.net/browse/PT4G4-2
+// Jira test plan located here- https://dmutah.atlassian.net/browse/PT4G4-2  AB
 test('Missions Dropdown Menu Test Case', async () => {
-    driver.manage().window().maximize();
+    driver.manage().window().maximize();// I used this to maximize the testpage window at the start AB
     await driver.findElement(missions).click();
     await driver.findElement(artemis).click();
     await driver.sleep(1000)
