@@ -23,6 +23,12 @@ const parker: By = By.xpath("//a[text()='Parker Solar Probe']");
 const launches: By = By.xpath("//a[text()='Launches and Landings']");
 const allmissions: By = By.xpath("//a[text()='All Missions A-Z']");
 const allmissionsnasabutton: By = By.xpath("//img[@src='/sites/all/themes/custom/nasatwo/images/nasa-logo.svg']");//the locator for the nasa logo differs in this mission page for some reason. AB
+
+
+beforeAll(async () => {
+    await driver.get('https://www.nasa.gov/');
+});
+
 const nasalogobutton: By = By.xpath("//*[@alt='NASA logo']")
 
 
@@ -88,3 +94,6 @@ test('Missions Dropdown Menu Test Case', async () => {
     expect(await page.getResults());
 
 });
+
+});
+

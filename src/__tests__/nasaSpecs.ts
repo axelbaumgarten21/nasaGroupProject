@@ -68,4 +68,3 @@ async doSearch (searchTerm) {
     //     }
     //   );
     // }
-}
