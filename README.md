@@ -13,4 +13,4 @@ The main purpose of the website is to provide information about NASA missions, c
 To execute these tests:
 
 1. Install dependencies: `npm i`
-2. Execute the tests: `npm nasatest`
+2. Execute the tests: `npm (name of test)`
