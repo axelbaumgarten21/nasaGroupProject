@@ -1,4 +1,4 @@
-# nasaGroupProject
+# NasaGroupProject
 See Jira plans here: https://dmutah.atlassian.net/jira/software/c/projects/PT4G4/issues/
 
 This project showcases our collaborative automation efforts to test
